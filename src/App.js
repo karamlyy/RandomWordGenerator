@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { words } from './data'
 
 function App() {
+
+  const [randomWords, setRandomWords] = useState([]);
+
+  const generateRandomWord = () => {
+    const randomWordColumn = []
+
+    for (let j = 0; j < 10; j++) {
+      const randomWordsRow = []
+      for (let i = 0; i < 12; i++) {
+        let randomWord = words[generateRandomNumber(0, words.length - 1)]
+        while (randomWordsRow.includes(randomWord)) {
+          randomWord = words[generateRandomNumber(0, words.length - 1)]
+        }
+        randomWordsRow.push(randomWord)
+      }
+      randomWordColumn.push(randomWordsRow)
+    }
+    console.log(randomWordColumn)
+    setRandomWords(randomWordColumn)
+  }
+
+  const generateRandomNumber = (min, max) => {
+    const random = Math.random();
+    return Math.floor(random * (max - min) + min);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className='appName'>Random Words</h1>
+      <button className='generate-button' onClick={generateRandomWord}>Generate Random Words</button>
+
+      <br></br>
+      <ol>
+        {randomWords.map((row, indexColumn) =>
+          <li key={indexColumn}>
+            {row.map((word, indexRow) => 
+              <span key={indexRow}>{word} </span>
+            )}
+          </li>
+        )}
+      </ol>
     </div>
   );
-}
 
+}
 export default App;
