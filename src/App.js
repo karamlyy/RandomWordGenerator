@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { words } from './data'
+import './App.css';
 
 function App() {
 

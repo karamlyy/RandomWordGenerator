@@ -28,6 +28,23 @@
   color: #61dafb;
 }
 
+.appName{
+  text-align: center;
+  color: #282c34;
+}
+
+.generate-button{
+  background-color: #282c34;
+  color: aliceblue;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.generate-button:hover{
+  color: #282c34;
+  background-color: aliceblue;
+  padding: 10px;
+}
 
 @keyframes App-logo-spin {
   from {
